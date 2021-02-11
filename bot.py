@@ -51,4 +51,4 @@ def reply():
 
 if __name__ == "__main__":
     tweet()
-    #reply()
+    reply()
