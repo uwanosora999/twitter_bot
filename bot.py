@@ -24,10 +24,6 @@ def puttweet():
         api.update_status(status = reply_text, in_reply_to_status_id = mention.id)
         api.create_favorite(mention.id)
 
-    print(requests.__version__)
-    print(linecache.__version__)
-    print(tweepy.__version__)
-    print(os.__version__)
 
 if __name__ == "__main__":
     puttweet()
