@@ -38,7 +38,10 @@ def reply():
     status = api.mentions_timeline(count = 5)
 
     for mention in status:
-        reply_text = "@"+str(mention.user.screen_name)+" "+"リプライできて偉い"
+        if mantion.id == 'uwanosora999':
+            reply_text = "@"+str(mention.user.screen_name)+" "+"リプライできて偉い"
+        else:
+            reply_text = "@"+str(mention.user.screen_name)+" "+"リプライなんて誰でもできる"
         api.update_status(status = reply_text, in_reply_to_status_id = mention.id)
         api.create_favorite(mention.id)
 
