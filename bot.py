@@ -16,8 +16,8 @@ def puttweet():
 
     api = tweepy.API(auth)
 
-    #status = api.mentions_timeline(count = 1)
-    status = api.user_timeline(id='uwanosora999',count = 1)
+    status = api.mentions_timeline(count = 1)
+    #status = api.user_timeline(id='uwanosora999',count = 1)
 
     for mention in status:
         reply_text = "@"+str(mention.user.screen_name)+" "+"呼吸できて偉い"
