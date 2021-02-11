@@ -5,7 +5,8 @@ twische = BlockingScheduler()
 
 @twische.scheduled_job('interval',minutes=1)
 def timed_job():
-    bot.puttweet()
+    bot.tweet()
+    bot.reply()
 
 if __name__ == "__main__":
     twische.start()
