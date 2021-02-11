@@ -16,20 +16,21 @@ def puttweet():
 
     api = tweepy.API(auth)
 
-    status = api.mentions_timeline(count = 5)
-    #status = api.user_timeline(id='uwanosora999',count = 1)
-
-    for mention in status:
-        reply_text = "@"+str(mention.user.screen_name)+" "+"リプライできて偉い"
-        api.update_status(status = reply_text, in_reply_to_status_id = mention.id)
-        api.create_favorite(mention.id)
-
     status = api.user_timeline(id='uwanosora999',count = 5)
 
     for mention in status:
         reply_text = "@"+str(mention.user.screen_name)+" "+"呼吸できて偉い"
         api.update_status(status = reply_text, in_reply_to_status_id = mention.id)
         api.create_favorite(mention.id)
+
+    status = api.mentions_timeline(count = 5)
+
+    for mention in status:
+        reply_text = "@"+str(mention.user.screen_name)+" "+"リプライできて偉い"
+        api.update_status(status = reply_text, in_reply_to_status_id = mention.id)
+        api.create_favorite(mention.id)
+
+
 
 
 
