@@ -5,6 +5,7 @@ import tweepy
 import os
 import random
 import json
+import requests
 
 def tweet():
 
@@ -20,12 +21,15 @@ def tweet():
 
     api = tweepy.API(auth)
 
-    status = api.user_timeline(id=AUTH,count = 5)
+    status = api.user_timeline(id=AUTH,count = 1)
 
     ### Bot mention ###
     rep_sent = json.load(open("./sentence.json",'r')) 
 
     for mention in status:
+        replies = tweepy.Cursor(api.search, q='to:{}'.format(AUTH),
+                                since_id=mentin.id, tweet_mode='extended').items()
+        print(replies)
         if '@' in mention.text:
             pass
         else:
