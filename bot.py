@@ -6,7 +6,6 @@ import os
 import random
 import json
 import requests
-import subprocess
 
 ### Twitter acount config ###
 CK=os.environ["CONSUMER_KEY"]
@@ -62,8 +61,5 @@ def reply():
 
 
 if __name__ == "__main__":
-    #tweet()
-    #reply()
-    app_name = os.environ["APP_NAME"]
-    cmd = 'curl http://{}.herokuapp.com/'.format(app_name)
-    subprocess.Popen(cmd.split())
+    tweet()
+    reply()
