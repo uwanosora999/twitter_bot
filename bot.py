@@ -4,6 +4,7 @@ import linecache
 import tweepy
 import os
 import random
+import json
 
 def tweet():
 
