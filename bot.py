@@ -29,7 +29,7 @@ def tweet():
         if '@' in mention.text:
             pass
         else:
-            reply_text = "@"+str(mention.user.screen_name)+" "+random.sample(rep_sent['sentence'], 1)
+            reply_text = "@"+str(mention.user.screen_name)+" "+random.choice(rep_sent['sentence'])
             api.update_status(status = reply_text, in_reply_to_status_id = mention.id)
             api.create_favorite(mention.id)
 
