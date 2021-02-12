@@ -29,10 +29,8 @@ def tweet():
     for mention in status:
         replies = tweepy.Cursor(api.search, q='to:{}'.format(AUTH),
                                 since_id=mention.id, tweet_mode='extended').items()
-        print(replies)
-        if '@' in mention.text:
-            pass
-        else:
+        replies_name = [ tweet.user.screen_name for tweet in replies ]
+        if not ( '@' in mention.text or api.me().screen_name in replies_name ):
             reply_text = "@"+str(mention.user.screen_name)+" "+random.choice(rep_sent['sentence'])
             api.update_status(status = reply_text, in_reply_to_status_id = mention.id)
             api.create_favorite(mention.id)
@@ -51,16 +49,23 @@ def reply():
 
     api = tweepy.API(auth)
 
-    status = api.mentions_timeline(count = 10) 
+    status = api.mentions_timeline(count = 5) 
 
     ### Bot mention ###
     for mention in status:
-        if mention.user.screen_name == AUTH:
+        replies = tweepy.Cursor(api.search, q='to:{}'.format(AUTH),
+                                since_id=mention.id, tweet_mode='extended').items()
+        replies_name = [ tweet.user.screen_name for tweet in replies ]
+
+        if mention.user.screen_name == AUTH :
             reply_text = "@"+str(mention.user.screen_name)+" "+"リプライできて偉い"
         else:
             reply_text = "@"+str(mention.user.screen_name)+" "+"リプライなんて誰でもできる"
-        api.update_status(status = reply_text, in_reply_to_status_id = mention.id)
-        api.create_favorite(mention.id)
+
+        if not ( api.me().screen_name in replies_name ):
+            api.update_status(status = reply_text, in_reply_to_status_id = mention.id)
+            api.create_favorite(mention.id)
+
 
 
 if __name__ == "__main__":
