@@ -3,7 +3,7 @@ import bot
 
 twische = BlockingScheduler()
 
-@twische.scheduled_job('interval',minutes=60)
+@twische.scheduled_job('interval',minutes=1)
 def timed_job():
     bot.tweet()
     bot.reply()
