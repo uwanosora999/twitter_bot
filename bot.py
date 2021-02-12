@@ -7,15 +7,15 @@ import random
 import json
 import requests
 
+### Twitter acount config ###
+CK=os.environ["CONSUMER_KEY"]
+CS=os.environ["CONSUMER_SECRET"]
+AT=os.environ["ACCESS_TOKEN_KEY"]
+AS=os.environ["ACCESS_TOKEN_SECRET"]
+AUTH=os.environ["AUTHOR"]
+
+
 def tweet():
-
-    ### Twitter acount config ###
-    CK=os.environ["CONSUMER_KEY"]
-    CS=os.environ["CONSUMER_SECRET"]
-    AT=os.environ["ACCESS_TOKEN_KEY"]
-    AS=os.environ["ACCESS_TOKEN_SECRET"]
-    AUTH=os.environ["AUTHOR"]
-
     auth = tweepy.OAuthHandler(CK, CS)
     auth.set_access_token(AT, AS)
 
@@ -36,14 +36,6 @@ def tweet():
             api.create_favorite(mention.id)
 
 def reply():
-
-    ### Twitter acount config ###
-    CK=os.environ["CONSUMER_KEY"]
-    CS=os.environ["CONSUMER_SECRET"]
-    AT=os.environ["ACCESS_TOKEN_KEY"]
-    AS=os.environ["ACCESS_TOKEN_SECRET"]
-    AUTH=os.environ["AUTHOR"]
-
     auth = tweepy.OAuthHandler(CK, CS)
     auth.set_access_token(AT, AS)
 
