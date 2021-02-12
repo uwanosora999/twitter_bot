@@ -28,7 +28,7 @@ def tweet():
 
     for mention in status:
         replies = tweepy.Cursor(api.search, q='to:{}'.format(AUTH),
-                                since_id=mentin.id, tweet_mode='extended').items()
+                                since_id=mention.id, tweet_mode='extended').items()
         print(replies)
         if '@' in mention.text:
             pass
