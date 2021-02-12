@@ -3,9 +3,11 @@ import requests
 import linecache
 import tweepy
 import os
+import random
 
 def tweet():
-    #from requests_oauthlib import OAuth1Session
+
+    ### Twitter acount config ###
     CK=os.environ["CONSUMER_KEY"]
     CS=os.environ["CONSUMER_SECRET"]
     AT=os.environ["ACCESS_TOKEN_KEY"]
@@ -19,15 +21,20 @@ def tweet():
 
     status = api.user_timeline(id=AUTH,count = 5)
 
+    ### Bot mention ###
+    rep_sent = json.load(open("./sentence.json",'r')) 
+
     for mention in status:
         if '@' in mention.text:
             pass
         else:
-            reply_text = "@"+str(mention.user.screen_name)+" "+"呼吸できて偉い"
+            reply_text = "@"+str(mention.user.screen_name)+" "+random.sample(rep_sent, 1)
             api.update_status(status = reply_text, in_reply_to_status_id = mention.id)
             api.create_favorite(mention.id)
 
 def reply():
+
+    ### Twitter acount config ###
     CK=os.environ["CONSUMER_KEY"]
     CS=os.environ["CONSUMER_SECRET"]
     AT=os.environ["ACCESS_TOKEN_KEY"]
@@ -40,6 +47,8 @@ def reply():
     api = tweepy.API(auth)
 
     status = api.mentions_timeline(count = 10) 
+
+    ### Bot mention ###
     for mention in status:
         if mention.user.screen_name == AUTH:
             reply_text = "@"+str(mention.user.screen_name)+" "+"リプライできて偉い"
