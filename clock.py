@@ -4,14 +4,13 @@ import subprocess
 import os
 
 twische = BlockingScheduler()
-reminder = BlockingScheduler()
 
 @twische.scheduled_job('interval',minutes=1)
 def timed_job():
     bot.tweet()
     bot.reply()
 
-@reminder.scheduled_job('interval',minutes=30)
+@twische.scheduled_job('interval',minutes=30)
 def requests():
     app_name = os.environ["APP_NAME"]
     cmd = 'curl http://{}.herokuapp.com/'.format(app_name)
@@ -19,4 +18,3 @@ def requests():
 
 if __name__ == "__main__":
     twische.start()
-    reminder.start()
